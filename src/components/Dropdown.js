@@ -1,7 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const Dropdown = ({ options, selected, handleSelectedChange }) => {
+const Dropdown = ({ label, options, selected, handleSelectedChange }) => {
     const [open, setOpen] = useState(false);
+    const mostParentNode = useRef(null);
+
+    useEffect(() => {
+        document.body.addEventListener(
+            "click",
+            (event) => {
+                if (
+                    mostParentNode.current &&
+                    mostParentNode.current.contains(event.target)
+                )
+                    return;
+                setOpen(false);
+            },
+            { capture: true }
+        );
+    }, []);
+
     const renderedOptions = options.map((option) => {
         // if (option.value === selected.value) return null;
         return (
@@ -19,9 +36,9 @@ const Dropdown = ({ options, selected, handleSelectedChange }) => {
         );
     });
     return (
-        <div className="ui form">
+        <div ref={mostParentNode} className="ui form">
             <div className="field">
-                <label className="label">Select a Color</label>
+                <label className="label">{label}</label>
                 <div
                     onClick={() => setOpen(!open)}
                     className={`ui selection dropdown ${
