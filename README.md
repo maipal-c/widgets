@@ -9,9 +9,9 @@
  ## 2. Search
     a. type here something & user will get top 10 result from wikipedia.
     b. by clicking on each user get redirected on that wiki page.
-## 3. Dropdown
-   a. simple single choice dropdown using react clicking events.
-## 4. translate
-   a. type something n choose a given language.
-   b. after choosing user will get an output as traslated text.
-   c. that happen using google-translate api.
+ ## 3. Dropdown
+    a. simple single choice dropdown using react clicking events.
+ ## 4. translate
+    a. type something n choose a given language.
+    b. after choosing user will get an output as traslated text.
+    c. that happen using google-translate api.
