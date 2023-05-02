@@ -1,11 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import ListItem from "./ListItem";
 
 const Search = () => {
-    const [term, setTerm] = useState("programming");
+    const [term, setTerm] = useState(
+        localStorage.getItem("SEARCH_TERM") ?? "programming"
+    );
     const [results, setResults] = useState([]);
     useEffect(() => {
         const search = async () => {
+            localStorage.setItem("SEARCH_TERM", term);
             const { data } = await axios.get(
                 "https://en.wikipedia.org/w/api.php",
                 {
@@ -30,27 +34,8 @@ const Search = () => {
                 clearTimeout(timeoutId);
             };
         }
-    }, [term]);
-    const renderedResults = results.map((result) => {
-        return (
-            <div className="item" key={result.pageid}>
-                <div className="right floated content">
-                    <a
-                        href={`https://en.wikipedia.org?curid=${result.pageid}`}
-                        className="ui button"
-                    >
-                        Go
-                    </a>
-                </div>
-                <div className="content">
-                    <div className="header">{result.title}</div>
-                    <span
-                        dangerouslySetInnerHTML={{ __html: result.snippet }}
-                    ></span>
-                </div>
-            </div>
-        );
-    });
+    }, [term, results.length]);
+
     return (
         <div>
             <div className="ui form">
@@ -63,7 +48,11 @@ const Search = () => {
                     />
                 </div>
             </div>
-            <div className="ui celled list">{renderedResults}</div>
+            <div className="ui celled list">
+                {results.map((item) => (
+                    <ListItem item={item} key={item?.pageid} />
+                ))}
+            </div>
         </div>
     );
 };

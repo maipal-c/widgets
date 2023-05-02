@@ -1,5 +1,4 @@
-import React from "react";
-export default ({ href, className, children }) => {
+function Link({ href, className, children }) {
     const onClick = (event) => {
         event.preventDefault();
         window.history.pushState({}, "", href);
@@ -11,4 +10,6 @@ export default ({ href, className, children }) => {
             {children}
         </a>
     );
-};
+}
+
+export default Link;

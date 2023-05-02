@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Accordion from "./components/Accordion";
 import Dropdown from "./components/Dropdown";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Translate from "./components/Translate";
 import Route from "./components/Route";
+import AccordionList from "./components/AccordionList";
 
 const items = [
     {
@@ -26,13 +26,13 @@ const options = [
     { label: "A Shade of Blue", value: "blue" },
 ];
 
-export default () => {
+function App() {
     const [selected, setSelected] = useState(options[0]);
     return (
-        <div>
+        <div className="ui container">
             <Header />
             <Route path="/">
-                <Accordion items={items} />
+                <AccordionList items={items} />
             </Route>
             <Route path="/search">
                 <Search />
@@ -50,4 +50,6 @@ export default () => {
             </Route>
         </div>
     );
-};
+}
+
+export default App;

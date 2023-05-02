@@ -10,7 +10,9 @@ const options = [
 
 const Translate = () => {
     const [selectedLanguage, handleSelectedLanguage] = useState(options[0]);
-    const [text, setText] = useState("");
+    const [text, setText] = useState(
+        localStorage.getItem("TRANSLATE_TEXT") ?? "programming"
+    );
     return (
         <div>
             <div className="ui form">

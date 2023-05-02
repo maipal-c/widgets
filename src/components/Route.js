@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default ({ path, children }) => {
+function Route({ path, children }) {
     const [currentPath, setCurrentPath] = useState(window.location.pathname);
     useEffect(() => {
         const onLocationChange = () => {
@@ -12,4 +12,6 @@ export default ({ path, children }) => {
         };
     }, []);
     return currentPath === path ? children : null;
-};
+}
+
+export default Route;

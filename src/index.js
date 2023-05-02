@@ -1,8 +1,7 @@
 import React from "react";
-import ReactDom from "react-dom";
-import reportWebVitals from "./reportWebVitals";
+import { createRoot } from "react-dom/client";
 import App from "./app";
 
-ReactDom.render(<App />, document.querySelector("#root"));
-
-reportWebVitals();
+const container = document.getElementById("app");
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(<App />);

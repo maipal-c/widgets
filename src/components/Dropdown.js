@@ -20,19 +20,17 @@ const Dropdown = ({ label, options, selected, handleSelectedChange }) => {
     }, []);
 
     const renderedOptions = options.map((option) => {
-        // if (option.value === selected.value) return null;
         return (
-            <>
+            <React.Fragment key={option?.value}>
                 {option.value !== selected.value && (
                     <div
-                        key={option.value}
                         className="item"
                         onClick={() => handleSelectedChange(option)}
                     >
                         {option.label}
                     </div>
                 )}
-            </>
+            </React.Fragment>
         );
     });
     return (

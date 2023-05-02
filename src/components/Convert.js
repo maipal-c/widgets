@@ -6,6 +6,7 @@ const Convert = ({ language, text }) => {
     const [translatedText, setTranslatedText] = useState("");
     useEffect(() => {
         const search = async () => {
+            localStorage.setItem("TRANSLATE_TEXT", text);
             const { data } = await axios.post(
                 "https://translation.googleapis.com/language/translate/v2",
                 {},
