@@ -1,19 +1,19 @@
 import React from "react";
-import Link from "./Link";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
         <div className="ui secondary pointing menu">
-            <Link href="/" className="item">
+            <Link to="/" className="item">
                 Accordion
             </Link>
-            <Link href="/search" className="item">
+            <Link to="/search" className="item">
                 Search
             </Link>
-            <Link href="/dropdown" className="item">
+            <Link to="/dropdown" className="item">
                 Dropdown
             </Link>
-            <Link href="/translate" className="item">
+            <Link to="/translate" className="item">
                 Translate
             </Link>
         </div>

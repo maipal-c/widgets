@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+
 import Dropdown from "./components/Dropdown";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Translate from "./components/Translate";
-import Route from "./components/Route";
+// import Route from "./components/Route";
 import AccordionList from "./components/AccordionList";
 
 const items = [
@@ -30,24 +32,25 @@ function App() {
     const [selected, setSelected] = useState(options[0]);
     return (
         <div className="ui container">
-            <Header />
-            <Route path="/">
-                <AccordionList items={items} />
-            </Route>
-            <Route path="/search">
-                <Search />
-            </Route>
-            <Route path="/dropdown">
-                <Dropdown
-                    label={"select a Color"}
-                    options={options}
-                    selected={selected}
-                    handleSelectedChange={setSelected}
-                />
-            </Route>
-            <Route path="/translate">
-                <Translate />
-            </Route>
+            <BrowserRouter>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<AccordionList items={items} />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route
+                        path="/dropdown"
+                        element={
+                            <Dropdown
+                                label={"select a Color"}
+                                options={options}
+                                selected={selected}
+                                handleSelectedChange={setSelected}
+                            />
+                        }
+                    />
+                    <Route path="/translate" element={<Translate />} />
+                </Routes>
+            </BrowserRouter>
         </div>
     );
 }
